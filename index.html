@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PensionPak — EOBI Pension Tracker &amp; Proof-of-Life Helper (UX Concept)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">P</span> PensionPak</div>
+  <p class="tagline">Your pension. On time. In full. — EOBI pension tracker &amp; proof-of-life helper for Pakistan</p>
+  <p class="sample-note">SAMPLE DATA — every figure, person and pension ID shown here is invented for this UX concept demo. These are NOT real people or real pensions. No real helpline numbers and no real CNIC numbers appear anywhere. The EOBI formula and the Rs 11,500 minimum pension are shown in simplified form; for your real status, check eobi.gov.pk with your CNIC or visit the EOBI facilitation centre.</p>
+</header>
+
+<nav class="tabs" aria-label="PensionPak sections">
+  <button id="tab-status" class="tab-btn active" data-tab="status">Pension Status</button>
+  <button id="tab-proof" class="tab-btn" data-tab="proof">Proof-of-Life</button>
+  <button id="tab-calculator" class="tab-btn" data-tab="calculator">Pension Calculator</button>
+  <button id="tab-survivors" class="tab-btn" data-tab="survivors">Survivors' Guide</button>
+  <button id="tab-spotter" class="tab-btn" data-tab="spotter">Red-Flag Spotter</button>
+</nav>
+
+<main>
+  <!-- Pension status -->
+  <section class="card" id="section-status">
+    <p class="eyebrow">PENSION STATUS — CHECK BY PENSION ID</p>
+    <h2>Your pension. On time. In full.</h2>
+    <p class="hint">Retired private-sector workers in Pakistan wait on an EOBI pension with no tracking. Payments are credited 1st–5th of the month but nobody tells you if yours arrived; missing the March or September biometric proof-of-life suspends the pension. Enter a pension ID to see the month in plain words. Try a sample ID: PNS-2026-4812 (Muhammad Bashir, suspended), PNS-2026-2077 (Fatima Bibi, active) or PNS-2026-9930 (Naseer Ahmed, active).</p>
+    <div class="verify-row">
+      <label>Pension ID
+        <input id="pension-id-input" type="text" value="PNS-2026-4812" placeholder="PNS-2026-4812">
+      </label>
+      <button id="status-btn">Check my pension</button>
+    </div>
+    <div id="status-result"></div>
+    <h3>Sample pensioners</h3>
+    <div id="pensioner-list"></div>
+    <p class="hint">Saved lookups on this device:</p>
+    <div id="saved-lookups"></div>
+  </section>
+
+  <!-- Proof-of-life -->
+  <section class="card" id="section-proof" style="display:none">
+    <p class="eyebrow">PROOF-OF-LIFE — MARCH AND SEPTEMBER WINDOWS</p>
+    <h2>Prove you're alive. Keep your pension.</h2>
+    <p class="hint">Biometric verification runs twice a year — March and September — at any Bank Alfalah branch. Miss a window and the next pension is held, not lost: verify once and it resumes the next month. The September 2026 window has closed, so suspended pensions are this month's real pain.</p>
+    <div id="proof-countdown"></div>
+    <h3>Four steps — do it in one visit</h3>
+    <div id="proof-steps"></div>
+    <h3>Your document checklist — saved on this device</h3>
+    <p id="checklist-progress"></p>
+    <div id="checklist-list"></div>
+    <h3>Missed September?</h3>
+    <p class="hint">Muhammad Bashir missed the September 2026 window, so his November pension of Rs 19,800 is suspended. He verifies once with his original CNIC + pension card, his pension resumes in December, and November's Rs 19,800 is released with it. Never pay an agent to "release" it — it is free.</p>
+  </section>
+
+  <!-- Pension calculator -->
+  <section class="card" id="section-calculator" style="display:none">
+    <p class="eyebrow">PENSION CALCULATOR — (AVERAGE WAGE × YEARS) ÷ 50</p>
+    <h2>What should your pension be?</h2>
+    <p class="hint">The EOBI formula is (average monthly wage × years of insured service) ÷ 50, with a minimum pension of Rs 11,500 a month. The floor was raised from Rs 10,000 on 1 Jan 2025 — the Rs 1,500 rise over 8 months (Jan–Aug 2025) is Rs 12,000 in arrears. Muhammad Bashir: Rs 45,000 × 22 ÷ 50 = Rs 19,800.</p>
+    <div class="verify-row">
+      <label>Average monthly wage (Rs)
+        <input id="wage-input" type="number" value="45000" min="0" step="1000">
+      </label>
+      <label>Years of insured service
+        <input id="years-input" type="number" value="22" min="0" step="1">
+      </label>
+      <button id="calc-btn">Work out my pension</button>
+    </div>
+    <div id="calc-result"></div>
+    <h3>Three worked examples</h3>
+    <div id="examples-list"></div>
+    <h3>Arrears estimator — the Rs 1,500 rise</h3>
+    <p class="hint">The minimum pension rose from Rs 10,000 to Rs 11,500 on 1 Jan 2025 — a rise of Rs 1,500 a month. Work out the arrears for any number of months.</p>
+    <div class="verify-row">
+      <label>Monthly rise (Rs)
+        <input id="rise-input" type="number" value="1500" min="0" step="100">
+      </label>
+      <label>Months owed
+        <input id="months-input" type="number" value="8" min="0" step="1">
+      </label>
+      <button id="arrears-btn">Work out the arrears</button>
+    </div>
+    <div id="arrears-result"></div>
+    <p id="calc-summary"></p>
+  </section>
+
+  <!-- Survivors' guide -->
+  <section class="card" id="section-survivors" style="display:none">
+    <p class="eyebrow">SURVIVORS' GUIDE — WIDOWS KEEP THEIR PENSION</p>
+    <h2>Widows keep their pension.</h2>
+    <p class="hint">Fatima Bibi, 64, Lahore — a widow — gets a survivors' pension of Rs 11,500 a month, ACTIVE, credited 3 Nov 2026. A widow's pension continues even if she remarries. If an agent tells you otherwise, he is lying — check the guide, do not take an agent's word.</p>
+    <div id="survivors-list"></div>
+  </section>
+
+  <!-- Red-flag spotter quiz -->
+  <section class="card" id="section-spotter" style="display:none">
+    <p class="eyebrow">RED-FLAG SPOTTER</p>
+    <h2>Spot the pension agent.</h2>
+    <p class="hint">Four things an agent does that should stop you paying — and one safe habit. An agent asks Rs 2,000–5,000 to "release" your pension; an "agent" wants your CNIC + pension card photocopies and your bank PIN; an SMS / WhatsApp says your pension is blocked unless you pay a fee; a "facilitator" offers to fix missing contribution years for cash. Call each one a red flag or safe, then check your score.</p>
+    <div id="spotter-quiz"></div>
+    <button id="spotter-btn">Check my score</button>
+    <div id="spotter-result"></div>
+  </section>
+
+  <button id="reset-demo" class="secondary">Reset demo data</button>
+</main>
+
+<footer>
+  <p>PensionPak is an unofficial UX concept by Muhammad Abbas Khan — not EOBI and not a government service. All figures, people and pension IDs are sample data. For your real status, check eobi.gov.pk with your CNIC or visit the EOBI facilitation centre.</p>
+  <p>Available for new projects: abbasmomand98@gmail.com</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
